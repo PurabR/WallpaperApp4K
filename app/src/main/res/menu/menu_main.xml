@@ -3,8 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.mrigankar.wallpaperapp.MainActivity.MainActivity">
     <item
-        android:id="@+id/action_settings"
-        android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home"
+        android:title="Home"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_downloads"
+        android:icon="@drawable/ic_download"
+        android:title="Downloads"
+        app:showAsAction="never"/>
+
 </menu>
