@@ -5,5 +5,11 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="ClickableView">
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:background">?attr/actionBarItemBackground</item>
+    </style>
+
     <style name="Theme.WallpaperApp" parent="Base.Theme.WallpaperApp" />
 </resources>
