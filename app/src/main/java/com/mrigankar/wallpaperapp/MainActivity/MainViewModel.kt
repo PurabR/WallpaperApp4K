@@ -1,4 +1,4 @@
-package com.mrigankar.wallpaperapp
+package com.mrigankar.wallpaperapp.MainActivity
 
 import com.homedrop.common.base.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
