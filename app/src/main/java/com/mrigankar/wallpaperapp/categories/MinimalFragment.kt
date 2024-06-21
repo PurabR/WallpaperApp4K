@@ -7,4 +7,12 @@ class MinimalFragment : BaseFragment<FragmentMinimalBinding, MinimalViewModel>()
     override fun getViewBinding(): FragmentMinimalBinding {
         return FragmentMinimalBinding.inflate(layoutInflater)
     }
+
+    override fun getViewModelClass(): Class<MinimalViewModel>? {
+        return MinimalViewModel::class.java
+    }
+
+    override fun setUpViews() {
+        super.setUpViews()
+    }
 }
