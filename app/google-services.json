@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "787512370778",
+    "project_id": "wallpaperapp-ff2e5",
+    "storage_bucket": "wallpaperapp-ff2e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:787512370778:android:1fdd666c1a2b72f1ab1a63",
+        "android_client_info": {
+          "package_name": "com.mrigankar.wallpaperapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCskIWdKtYwXLoIl38_yfDukD4Uh4GWylo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
