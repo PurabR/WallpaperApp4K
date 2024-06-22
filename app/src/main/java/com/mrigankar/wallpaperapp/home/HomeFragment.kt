@@ -8,6 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun getViewBinding(): FragmentHomeBinding {
         return FragmentHomeBinding.inflate(layoutInflater)
+
     }
 
     override fun getViewModelClass(): Class<HomeViewModel>? {
@@ -16,5 +17,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setUpViews() {
         super.setUpViews()
+
     }
 }
