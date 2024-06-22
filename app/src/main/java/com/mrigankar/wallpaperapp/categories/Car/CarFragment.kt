@@ -1,4 +1,4 @@
-package com.mrigankar.wallpaperapp.categories
+package com.mrigankar.wallpaperapp.categories.Car
 
 import com.homedrop.common.base.BaseFragment
 import com.mrigankar.wallpaperapp.databinding.FragmentCarBinding
