@@ -1,19 +1,17 @@
 package com.homedrop.common.base
 
-import android.os.Bundle
 import android.util.Log
 import android.util.SparseArray
 import android.util.SparseBooleanArray
 import android.view.ViewGroup
 import androidx.core.util.forEach
-import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.findViewTreeLifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewbinding.ViewBinding
 import com.homedrop.common.ITEM_NONE
 import java.util.Locale
 
 abstract class BaseRecyclerAdapter<T : BaseViewType> :
-    RecyclerView.Adapter<DataBoundViewHolder<ViewDataBinding>>() {
+    RecyclerView.Adapter<DataBoundViewHolder<ViewBinding>>() {
 
     companion object {
         private const val TAG = "BaseRecyclerAdapter"
@@ -23,9 +21,9 @@ abstract class BaseRecyclerAdapter<T : BaseViewType> :
         private set
 
     private val selectedItems = SparseBooleanArray()
-    private val supportedViewBinderResolverMap = SparseArray<ViewDataBinder<ViewDataBinding, T>>()
+    private val supportedViewBinderResolverMap = SparseArray<ViewDataBinder<ViewBinding, T>>()
 
-    protected abstract fun getSupportedViewDataBinder(): List<ViewDataBinder<ViewDataBinding, T>>
+    protected abstract fun getSupportedViewDataBinder(): List<ViewDataBinder<ViewBinding, T>>
 
     protected fun initViewDataBinders() {
         getSupportedViewDataBinder().forEach { viewDataBinder ->
@@ -84,7 +82,7 @@ abstract class BaseRecyclerAdapter<T : BaseViewType> :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): DataBoundViewHolder<ViewDataBinding> {
+    ): DataBoundViewHolder<ViewBinding> {
         val viewDataBinder = supportedViewBinderResolverMap.get(viewType)
         if (viewDataBinder == null) {
             val message =
@@ -92,22 +90,20 @@ abstract class BaseRecyclerAdapter<T : BaseViewType> :
             throw IllegalArgumentException(message)
         }
         val binder = viewDataBinder.createBinder(parent)
-        binder.lifecycleOwner = parent.findViewTreeLifecycleOwner()
         return DataBoundViewHolder(binder)
     }
 
-    override fun onBindViewHolder(holder: DataBoundViewHolder<ViewDataBinding>, position: Int) {
+    override fun onBindViewHolder(holder: DataBoundViewHolder<ViewBinding>, position: Int) {
         val viewDataBinder = supportedViewBinderResolverMap.get(getItemViewType(position))
         if (viewDataBinder == null) {
             Log.e(TAG, "Please add the supported view binder to view binders list in adapter")
             return
         }
         viewDataBinder.bindData(holder.binding, dataList[position], position)
-        holder.binding.executePendingBindings()
     }
 
     override fun onBindViewHolder(
-        holder: DataBoundViewHolder<ViewDataBinding>,
+        holder: DataBoundViewHolder<ViewBinding>,
         position: Int,
         payloads: MutableList<Any>
     ) {

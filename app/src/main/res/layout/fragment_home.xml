@@ -73,7 +73,7 @@
             android:layout_height="match_parent"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2"
-            tools:listitem="@layout/item_cardview"/>
+            tools:listitem="@layout/item_best_of_month"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
