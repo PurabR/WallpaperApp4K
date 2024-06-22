@@ -27,10 +27,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.mrigankar.wallpaperapp" />
+                  <option name="mobileSdkAppId" value="1:787512370778:android:1fdd666c1a2b72f1ab1a63" />
+                  <option name="projectId" value="wallpaperapp-ff2e5" />
+                  <option name="projectNumber" value="787512370778" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
