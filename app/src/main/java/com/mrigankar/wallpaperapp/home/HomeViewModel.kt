@@ -8,8 +8,6 @@ import javax.inject.Inject
 @HiltViewModel
 class HomeViewModel @Inject constructor():BaseViewModel() {
 
-    lateinit var db:FirebaseFirestore
-
 
 
 }
