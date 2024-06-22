@@ -32,18 +32,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setUpViews() {
         super.setUpViews()
-
         viewModel.getProducts()
 
         homeAdapter = HomeAdapter(CategoriesViewBinder(), bomViewBinder())
         binding.recyclerView.adapter = homeAdapter
 
 
-
-
-
     }
-
-
 
 }

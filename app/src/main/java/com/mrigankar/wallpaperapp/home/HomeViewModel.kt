@@ -1,5 +1,6 @@
 package com.mrigankar.wallpaperapp.home
 
+import android.util.Log
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObjects
 import com.homedrop.common.base.BaseViewModel
@@ -14,10 +15,14 @@ class HomeViewModel @Inject constructor():BaseViewModel() {
     fun getProducts(){
         db = FirebaseFirestore.getInstance()
 
-        db.collection("bestofthemonth").addSnapshotListener { value, error ->
+        db.collection("bestofmonth").addSnapshotListener { value, error ->
             val listBestofTheMonth = arrayListOf<bomViewData>()
             val data = value?.toObjects(bomViewData::class.java)
             listBestofTheMonth.addAll(data!!)
+
+            for (i in listBestofTheMonth){
+                Log.e("@@@@@@", "onCreateView")
+            }
         }
     }
 
