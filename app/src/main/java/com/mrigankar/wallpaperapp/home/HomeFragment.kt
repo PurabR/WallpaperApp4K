@@ -30,18 +30,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun setUpViews() {
         super.setUpViews()
+        initViews()
+        homeAdapter.setItems(
+            listOf(
+bomViewData("cdzVNRDy6QrDuX7ltv7i", "https://e0.pxfuel.com/wallpapers/901/254/desktop-wallpaper-nature-cell-phone-mobile-nature-android.jpg"
 
-        db = FirebaseFirestore.getInstance()
-        db.collection("bestofmonth").addSnapshotListener { value, error ->
-            val listBestofTheMonth= arrayListOf<bomViewData>()
-            val data = value?.toObjects(bomViewData::class.java)
-            listBestofTheMonth.addAll(data!!)
+)
 
-            for (i in listBestofTheMonth){
-                Log.e("TEST", "OnCreateView"+i)
-            }
+            )
+        )
 
-        }
     }
 
     fun initViews(){
