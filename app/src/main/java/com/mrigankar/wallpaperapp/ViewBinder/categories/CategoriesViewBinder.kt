@@ -25,6 +25,7 @@ class CategoriesViewBinder @Inject constructor(
     override fun bindData(binding: ItemCategoriesBinding, data: CategoriesViewData, position: Int) {
         binding.apply {
             loadImage(ivImage, data.link, cornerRadius = 10)
+            tvTitle.text = data.name
         }
     }
 }

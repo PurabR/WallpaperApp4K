@@ -4,7 +4,8 @@ import com.homedrop.common.ITEM_CATEGORIES
 import com.homedrop.common.base.BaseViewType
 
 data class CategoriesViewData (
-    val id : String = "",
-    val link : String = "",
+    val id : String = " ",
+    val link : String = " ",
+    val name : String = " ",
     override val viewType: Int = ITEM_CATEGORIES
 ): BaseViewType

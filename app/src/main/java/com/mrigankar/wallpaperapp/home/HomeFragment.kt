@@ -11,6 +11,7 @@ import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.HomeAdapter
+import com.mrigankar.wallpaperapp.adapter.HomeAdapter2
 import com.mrigankar.wallpaperapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -21,10 +22,12 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
-    lateinit var db: FirebaseFirestore
 
     @Inject
     lateinit var homeAdapter: HomeAdapter
+
+    @Inject
+    lateinit var homeAdapter2: HomeAdapter2
 
 
     override fun getViewBinding(): FragmentHomeBinding {
@@ -39,9 +42,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun setUpViews() {
         super.setUpViews()
 
-        binding.recyclerView.adapter = homeAdapter
+        binding.rvCategories.adapter = homeAdapter2
 
-        viewModel.getData()
+        viewModel.getCategoriesData()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.collector2.collectLatest {
+                homeAdapter2.setItems(it)
+            }
+        }
+
+        binding.rvBom.adapter = homeAdapter
+
+        viewModel.getBomData()
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.collector.collectLatest {
                 homeAdapter.setItems(it)
@@ -50,7 +62,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
 
     }
-
 
 
 }

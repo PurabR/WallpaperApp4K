@@ -9,8 +9,8 @@ import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewBinder
 import javax.inject.Inject
 
-class HomeAdapter @Inject constructor(
-    private val bomViewBinder: bomViewBinder
+class HomeAdapter2 @Inject constructor(
+    private val categoriesViewBinder: CategoriesViewBinder
 ): BaseRecyclerAdapter<BaseViewType>() {
     init {
         initViewDataBinders()
@@ -18,7 +18,7 @@ class HomeAdapter @Inject constructor(
 
     override fun getSupportedViewDataBinder(): List<ViewDataBinder<ViewBinding,BaseViewType>> {
         val viewDataBinders = ArrayList<ViewDataBinder<*, *>>(1)
-        viewDataBinders.add(bomViewBinder)
+        viewDataBinders.add(categoriesViewBinder)
 
 
         return viewDataBinders as List<ViewDataBinder<ViewBinding,BaseViewType>>

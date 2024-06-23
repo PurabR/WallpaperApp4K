@@ -2,10 +2,12 @@ package com.mrigankar.wallpaperapp.ViewBinder.bestofmonth
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.homedrop.common.ITEM_BOM
 import com.homedrop.common.ITEM_CATEGORIES
 import com.homedrop.common.base.ViewDataBinder
 import com.homedrop.common.util.image.loadImage
+import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.databinding.ItemBestOfMonthBinding
 import javax.inject.Inject
 
