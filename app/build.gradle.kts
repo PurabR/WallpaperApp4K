@@ -60,11 +60,17 @@ dependencies {
 
 
     implementation("com.google.dagger:hilt-android:2.48")
-    implementation(libs.firebase.firestore)
     kapt("com.google.dagger:hilt-android-compiler:2.48")
+
+    implementation(libs.firebase.firestore)
+
     implementation("com.makeramen:roundedimageview:2.3.0")
+
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-analytics")
+
+    debugImplementation("com.github.chuckerteam.chucker:library:4.0.0")
+    releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 
 
 

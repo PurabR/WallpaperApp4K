@@ -15,6 +15,7 @@
         android:padding="8dp"
         style="@style/ClickableTextView">
 
+
         <ImageView
             android:id="@+id/iv_image"
             android:layout_width="match_parent"

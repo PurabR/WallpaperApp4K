@@ -2,6 +2,7 @@ package com.mrigankar.wallpaperapp.ViewBinder.bestofmonth
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import com.homedrop.common.ITEM_BOM
 import com.homedrop.common.ITEM_CATEGORIES
 import com.homedrop.common.base.ViewDataBinder
 import com.homedrop.common.util.image.loadImage
@@ -13,7 +14,7 @@ class bomViewBinder @Inject constructor(
 
 ): ViewDataBinder<ItemBestOfMonthBinding, bomViewData>() {
     override val viewType: Int
-        get() = ITEM_CATEGORIES
+        get() = ITEM_BOM
 
     override fun createBinder(parent: ViewGroup): ItemBestOfMonthBinding {
         return ItemBestOfMonthBinding.inflate(

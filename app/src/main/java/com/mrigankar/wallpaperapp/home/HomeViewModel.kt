@@ -1,24 +1,43 @@
 package com.mrigankar.wallpaperapp.home
 
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.toObjects
+
 import com.homedrop.common.base.BaseViewModel
+import com.homedrop.common.base.BaseViewType
+import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewData
+import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
+
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor():BaseViewModel() {
-    lateinit var db : FirebaseFirestore
+class HomeViewModel @Inject constructor(
 
-    fun getProducts(){
-        db = FirebaseFirestore.getInstance()
+) : BaseViewModel() {
 
-        db.collection("bestofthemonth").addSnapshotListener { value, error ->
-            val listBestofTheMonth = arrayListOf<bomViewData>()
-            val data = value?.toObjects(bomViewData::class.java)
-            listBestofTheMonth.addAll(data!!)
+    private val channel = Channel<List<BaseViewType>>()
+    val collector = channel.receiveAsFlow()
+
+    fun getData() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val db = FirebaseFirestore.getInstance()
+            val listCategory = db.collection("categories").get().await()
+            val lm = listCategory.toObjects(CategoriesViewData::class.java)
+            val listBom = db.collection("bestofmonth").get().await()
+            val bm = listBom.toObjects(bomViewData::class.java)
+            channel.send(lm+bm)
         }
     }
 
 }
+
+
+
