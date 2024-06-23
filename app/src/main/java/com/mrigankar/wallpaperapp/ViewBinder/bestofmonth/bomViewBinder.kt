@@ -28,4 +28,5 @@ class bomViewBinder @Inject constructor(
             loadImage(ivImage, data.link, cornerRadius = 10)
         }
     }
+
 }
