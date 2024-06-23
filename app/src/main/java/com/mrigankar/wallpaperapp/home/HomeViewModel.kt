@@ -32,10 +32,10 @@ class HomeViewModel @Inject constructor(
     fun getData() {
         viewModelScope.launch(Dispatchers.IO) {
             val db = FirebaseFirestore.getInstance()
-            val listCategory = db.collection("categories").get().await()
-            val lm = listCategory.toObjects(CategoriesViewData::class.java)
-            val listBom = db.collection("bestofmonth").get().await()
-            val bm = listBom.toObjects(bomViewData::class.java)
+            val listCategory = db.collection("bestofmonth").get().await()
+            val lm = listCategory.toObjects(bomViewData::class.java)
+            val listBom = db.collection("categories").get().await()
+            val bm = listBom.toObjects(CategoriesViewData::class.java)
             channel.send(lm+bm)
         }
     }
