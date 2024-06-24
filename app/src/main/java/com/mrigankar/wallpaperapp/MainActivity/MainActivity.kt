@@ -10,6 +10,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
+    //MainActivity
+
+    //Splash
+    //Home
+    //category detail screen
+    //image screen
+
     private lateinit var navController: NavController
     override fun getViewBinding(): ActivityMainBinding {
         return ActivityMainBinding.inflate(layoutInflater)
@@ -28,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 navController.navigate(R.id.homeFragment)
             }
             if (it.itemId == R.id.action_downloads) {
-                navController.navigate(R.id.action_homeFragment_to_downloadFragment)
+               // navController.navigate(R.id.action_homeFragment_to_downloadFragment)
             }
 
 

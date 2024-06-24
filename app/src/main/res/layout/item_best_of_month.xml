@@ -2,23 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="143dp"
-    android:layout_height="207dp">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="5dp"
-        app:cardCornerRadius="10dp">
-
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/black"
-            android:scaleType="center"/>
-
-
-    </androidx.cardview.widget.CardView>
+   <androidx.recyclerview.widget.RecyclerView
+       android:id="@+id/recycler_view"
+       app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+       android:orientation="horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"/>
 
 </LinearLayout>

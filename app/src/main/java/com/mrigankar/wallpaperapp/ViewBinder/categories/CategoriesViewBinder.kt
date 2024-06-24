@@ -5,12 +5,12 @@ import android.view.ViewGroup
 import com.homedrop.common.ITEM_CATEGORIES
 import com.homedrop.common.base.ViewDataBinder
 import com.homedrop.common.util.image.loadImage
+import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
 import com.mrigankar.wallpaperapp.databinding.ItemCategoriesBinding
 import javax.inject.Inject
 
 class CategoriesViewBinder @Inject constructor(
-
-
+    private val listener: HomeAdapterListener
 ):ViewDataBinder<ItemCategoriesBinding, CategoriesViewData>() {
     override val viewType: Int
         get() = ITEM_CATEGORIES
@@ -26,6 +26,9 @@ class CategoriesViewBinder @Inject constructor(
         binding.apply {
             loadImage(ivImage, data.link, cornerRadius = 10)
             tvTitle.text = data.name
+            root.setOnClickListener {
+                listener.onCategoryClicked(data)
+            }
         }
     }
 }

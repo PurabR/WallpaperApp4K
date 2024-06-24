@@ -7,8 +7,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 import com.homedrop.common.base.BaseViewModel
 import com.homedrop.common.base.BaseViewType
-import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewBinder
-import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewData
+import com.mrigankar.wallpaperapp.ViewBinder.ImageViewData
+import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.BomViewDataItems
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -25,21 +25,24 @@ class HomeViewModel @Inject constructor(
 
 ) : BaseViewModel() {
 
-
-    private val channel = Channel<List<bomViewData>>()
+    private val channel = Channel<List<BaseViewType>>()
     val collector = channel.receiveAsFlow()
 
     private val channel2 = Channel<List<CategoriesViewData>>()
     val collector2 = channel2.receiveAsFlow()
+
 
     fun getBomData() {
         viewModelScope.launch(Dispatchers.IO) {
             val db = FirebaseFirestore.getInstance()
 
             val listBom = db.collection("bestofmonth").get().await()
-            val lb = listBom.toObjects(bomViewData::class.java)
+            val lb = listBom.toObjects(ImageViewData::class.java)
 
-            channel.send(lb)
+            val listCategory = db.collection("categories").get().await()
+            val lc = listCategory.toObjects(CategoriesViewData::class.java)
+
+            channel.send(listOf(BomViewDataItems(lb)) + lc)
         }
     }
 
@@ -53,6 +56,10 @@ class HomeViewModel @Inject constructor(
             channel2.send(lc)
         }
     }
+
+
+
+
 
 }
 
