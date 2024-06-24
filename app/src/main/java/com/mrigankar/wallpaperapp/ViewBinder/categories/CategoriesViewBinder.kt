@@ -32,4 +32,3 @@ class CategoriesViewBinder @Inject constructor(
         }
     }
 }
-///

@@ -4,9 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.homedrop.common.ITEM_BOM
 import com.homedrop.common.base.ViewDataBinder
-import com.mrigankar.wallpaperapp.Listener.BomListener
-import com.mrigankar.wallpaperapp.adapter.HomeAdapter
-import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
 import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.databinding.ItemBestOfMonthBinding

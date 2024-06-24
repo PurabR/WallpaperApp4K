@@ -28,9 +28,6 @@ class HomeViewModel @Inject constructor(
     private val channel = Channel<List<BaseViewType>>()
     val collector = channel.receiveAsFlow()
 
-    private val channel2 = Channel<List<CategoriesViewData>>()
-    val collector2 = channel2.receiveAsFlow()
-
 
     fun getBomData() {
         viewModelScope.launch(Dispatchers.IO) {
@@ -45,21 +42,6 @@ class HomeViewModel @Inject constructor(
             channel.send(listOf(BomViewDataItems(lb)) + lc)
         }
     }
-
-    fun getCategoriesData() {
-        viewModelScope.launch(Dispatchers.IO) {
-            val db = FirebaseFirestore.getInstance()
-
-            val listCategory = db.collection("categories").get().await()
-            val lc = listCategory.toObjects(CategoriesViewData::class.java)
-
-            channel2.send(lc)
-        }
-    }
-
-
-
-
 
 }
 

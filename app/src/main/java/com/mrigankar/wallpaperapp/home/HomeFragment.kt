@@ -10,10 +10,10 @@ import com.mrigankar.wallpaperapp.ViewBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 
 import com.mrigankar.wallpaperapp.adapter.HomeAdapter
-import com.mrigankar.wallpaperapp.adapter.CategoriesAdapter
+
 import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
-import com.mrigankar.wallpaperapp.databinding.FragmentHomeNewBinding
+import com.mrigankar.wallpaperapp.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -21,15 +21,15 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeNewBinding, HomeViewModel>(), ImageAdapterListener, HomeAdapterListener {
+class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAdapterListener, HomeAdapterListener {
 
 
     @Inject
     lateinit var homeAdapter: HomeAdapter
 
 
-    override fun getViewBinding(): FragmentHomeNewBinding {
-        return FragmentHomeNewBinding.inflate(layoutInflater)
+    override fun getViewBinding(): FragmentHomeBinding {
+        return FragmentHomeBinding.inflate(layoutInflater)
 
     }
 

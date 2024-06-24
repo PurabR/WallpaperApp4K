@@ -14,23 +14,23 @@ import javax.inject.Inject
 
 class ImageViewBinder(
     private val listener: ImageAdapterListener
-): ViewDataBinder<ItemImageBinding, ImageViewData>() {
+) : ViewDataBinder<ItemImageBinding, ImageViewData>() {
 
     override val viewType: Int
         get() = ITEM_IMAGE
 
     override fun createBinder(parent: ViewGroup): ItemImageBinding {
-        val binding =  ItemImageBinding.inflate(
+        val binding = ItemImageBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
         binding.imageView.updateLayoutParams {
-            width = DeviceUtil.getDeviceWidth()/3
+            width = DeviceUtil.getDeviceWidth() / 3
         }
         return binding
     }
 
     override fun bindData(binding: ItemImageBinding, data: ImageViewData, position: Int) {
-loadImage(binding.imageView, data.link)
+        loadImage(binding.imageView, data.link)
         binding.root.setOnClickListener {
             listener.onImageClicked(data)
         }
