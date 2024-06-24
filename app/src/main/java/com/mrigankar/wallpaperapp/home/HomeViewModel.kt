@@ -44,8 +44,11 @@ class HomeViewModel @Inject constructor(
             val listCategory = db.collection("categories").get().await()
             val lc = listCategory.toObjects(CategoriesViewData::class.java)
 
+            val listCategoryTitle = db.collection("categories").get().await()
+            val lct = listCategoryTitle.toObjects(BomTitleData::class.java)
 
-            channel.send(lbt + listOf(BomViewDataItems(lb)) + lc)
+
+            channel.send(lbt + listOf(BomViewDataItems(lb)) + lct + lc)
         }
     }
 

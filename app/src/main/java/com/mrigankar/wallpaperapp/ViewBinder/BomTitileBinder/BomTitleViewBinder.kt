@@ -23,7 +23,7 @@ class BomTitleViewBinder @Inject constructor(
 
     override fun bindData(binding: ItemTitleBinding, data: BomTitleData, position: Int) {
         binding.apply {
-            tvTitle.text = data.name
+            tvTitle.text = data.title
         }
     }
 }

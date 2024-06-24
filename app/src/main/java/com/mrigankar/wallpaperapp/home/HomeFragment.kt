@@ -45,7 +45,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAd
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 when (position) {
-                    0, 1 -> return 6
+                    0, 1, 2 -> return 6
                     else -> return 3
 
                 }
