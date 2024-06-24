@@ -35,7 +35,7 @@ class HomeViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             val db = FirebaseFirestore.getInstance()
 
-            val listBomTitle = db.collection("july").get().await()
+            val listBomTitle = db.collection("bomTitle").get().await()
             val lbt = listBomTitle.toObjects(BomTitleData::class.java)
 
             val listBom = db.collection("bestofmonth").get().await()
@@ -44,7 +44,7 @@ class HomeViewModel @Inject constructor(
             val listCategory = db.collection("categories").get().await()
             val lc = listCategory.toObjects(CategoriesViewData::class.java)
 
-            val listCategoryTitle = db.collection("categories").get().await()
+            val listCategoryTitle = db.collection("categoriesTitle").get().await()
             val lct = listCategoryTitle.toObjects(BomTitleData::class.java)
 
 
