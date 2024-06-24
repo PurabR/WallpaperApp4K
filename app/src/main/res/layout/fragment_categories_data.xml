@@ -3,18 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".categories.AiGenerated.AiGeneratedFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/cat_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:fontFamily="@font/primary_font"
         android:text="AI Generated"
         android:textSize="20sp"
-        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,24 +22,25 @@
         style="@style/ClickableView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
         android:src="@drawable/ic_back"
-        android:layout_marginStart="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-        app:layout_constraintHorizontal_bias="0.307"
+        app:layout_constraintBottom_toBottomOf="@+id/cat_title"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title" />
+        app:layout_constraintTop_toTopOf="@+id/cat_title"
+        app:layout_constraintVertical_bias="0.0" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/cat_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="16dp"
         android:padding="16dp"
-        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_title"
-        app:spanCount="2"
-        tools:listitem="@layout/item_best_of_month" />
+        app:layout_constraintTop_toBottomOf="@+id/cat_title"
+        app:spanCount="2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

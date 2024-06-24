@@ -31,4 +31,6 @@ object AdapterModule {
         }
     }
 
+
+
 }
