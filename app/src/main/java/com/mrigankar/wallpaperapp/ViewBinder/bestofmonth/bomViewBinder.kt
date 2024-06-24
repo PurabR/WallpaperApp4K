@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.homedrop.common.ITEM_BOM
 import com.homedrop.common.base.ViewDataBinder
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
 import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.databinding.ItemBestOfMonthBinding
@@ -13,7 +14,7 @@ class bomViewBinder @Inject constructor(
     private val imageAdapterListener: ImageAdapterListener
 ): ViewDataBinder<ItemBestOfMonthBinding, BomViewDataItems>() {
 
-    private val iamgeAdapter = ImageAdapter(ImageViewBinder(imageAdapterListener))
+    private val imageAdapter = ImageAdapter(ImageViewBinder(imageAdapterListener))
 
     override val viewType: Int
         get() = ITEM_BOM
@@ -27,8 +28,8 @@ class bomViewBinder @Inject constructor(
 
     override fun bindData(binding: ItemBestOfMonthBinding, data: BomViewDataItems, position: Int) {
         binding.apply {
-            recyclerView.adapter = iamgeAdapter
+            recyclerView.adapter = imageAdapter
         }
-        iamgeAdapter.setItems(data.items)
+        imageAdapter.setItems(data.items)
     }
 }

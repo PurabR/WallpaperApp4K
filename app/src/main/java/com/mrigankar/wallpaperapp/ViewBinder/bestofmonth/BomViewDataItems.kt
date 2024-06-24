@@ -2,7 +2,7 @@ package com.mrigankar.wallpaperapp.ViewBinder.bestofmonth
 
 import com.homedrop.common.ITEM_BOM
 import com.homedrop.common.base.BaseViewType
-import com.mrigankar.wallpaperapp.ViewBinder.ImageViewData
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 
 data class BomViewDataItems (
     val items: List<ImageViewData>,

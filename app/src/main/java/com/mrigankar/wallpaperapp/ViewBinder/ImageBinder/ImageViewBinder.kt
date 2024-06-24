@@ -1,4 +1,4 @@
-package com.mrigankar.wallpaperapp.ViewBinder.bestofmonth
+package com.mrigankar.wallpaperapp.ViewBinder.ImageBinder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,10 +7,8 @@ import com.homedrop.common.ITEM_IMAGE
 import com.homedrop.common.base.ViewDataBinder
 import com.homedrop.common.util.DeviceUtil
 import com.homedrop.common.util.image.loadImage
-import com.mrigankar.wallpaperapp.ViewBinder.ImageViewData
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.databinding.ItemImageBinding
-import javax.inject.Inject
 
 class ImageViewBinder(
     private val listener: ImageAdapterListener

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.homedrop.common.base.BaseFragment
 import com.homedrop.common.ktx.showShortToast
-import com.mrigankar.wallpaperapp.ViewBinder.ImageViewData
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 
 import com.mrigankar.wallpaperapp.adapter.HomeAdapter
@@ -45,8 +45,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAd
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 when (position) {
-                    0 -> return 6 // full width
-                    else -> return 3 // span 2
+                    0, 1 -> return 6
+                    else -> return 3
 
                 }
             }

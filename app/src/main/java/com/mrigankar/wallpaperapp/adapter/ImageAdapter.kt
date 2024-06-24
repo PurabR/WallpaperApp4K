@@ -4,10 +4,8 @@ import androidx.viewbinding.ViewBinding
 import com.homedrop.common.base.BaseRecyclerAdapter
 import com.homedrop.common.base.BaseViewType
 import com.homedrop.common.base.ViewDataBinder
-import com.mrigankar.wallpaperapp.ViewBinder.ImageViewData
-import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.ImageViewBinder
-import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewBinder
-import javax.inject.Inject
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
 
 class ImageAdapter (
     private val imageViewBinder: ImageViewBinder
