@@ -1,16 +1,15 @@
-package com.mrigankar.wallpaperapp.ViewBinder.BomTitileBinder
+package com.mrigankar.wallpaperapp.ViewBinder.TitileBinder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.homedrop.common.ITEM_TITLE_BOM
 import com.homedrop.common.base.ViewDataBinder
-import com.mrigankar.wallpaperapp.databinding.ItemCategoriesBinding
 import com.mrigankar.wallpaperapp.databinding.ItemTitleBinding
 import javax.inject.Inject
 
-class BomTitleViewBinder @Inject constructor(
+class TitleViewBinder @Inject constructor(
 
-): ViewDataBinder<ItemTitleBinding, BomTitleData>() {
+): ViewDataBinder<ItemTitleBinding, TitleData>() {
     override val viewType: Int
         get() = ITEM_TITLE_BOM
 
@@ -21,7 +20,7 @@ class BomTitleViewBinder @Inject constructor(
     }
 
 
-    override fun bindData(binding: ItemTitleBinding, data: BomTitleData, position: Int) {
+    override fun bindData(binding: ItemTitleBinding, data: TitleData, position: Int) {
         binding.apply {
             tvTitle.text = data.title
         }

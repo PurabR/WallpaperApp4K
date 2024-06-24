@@ -7,8 +7,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 import com.homedrop.common.base.BaseViewModel
 import com.homedrop.common.base.BaseViewType
-import com.mrigankar.wallpaperapp.ViewBinder.BomTitileBinder.BomTitleData
-import com.mrigankar.wallpaperapp.ViewBinder.BomTitileBinder.BomTitleViewBinder
+import com.mrigankar.wallpaperapp.ViewBinder.TitileBinder.TitleData
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.BomViewDataItems
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
@@ -36,7 +35,7 @@ class HomeViewModel @Inject constructor(
             val db = FirebaseFirestore.getInstance()
 
             val listBomTitle = db.collection("bomTitle").get().await()
-            val lbt = listBomTitle.toObjects(BomTitleData::class.java)
+            val lbt = listBomTitle.toObjects(TitleData::class.java)
 
             val listBom = db.collection("bestofmonth").get().await()
             val lb = listBom.toObjects(ImageViewData::class.java)
@@ -45,7 +44,7 @@ class HomeViewModel @Inject constructor(
             val lc = listCategory.toObjects(CategoriesViewData::class.java)
 
             val listCategoryTitle = db.collection("categoriesTitle").get().await()
-            val lct = listCategoryTitle.toObjects(BomTitleData::class.java)
+            val lct = listCategoryTitle.toObjects(TitleData::class.java)
 
 
             channel.send(lbt + listOf(BomViewDataItems(lb)) + lct + lc)
