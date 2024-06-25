@@ -1,10 +1,10 @@
 package com.mrigankar.wallpaperapp.categories
 
-import android.content.Intent
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
+import com.homedrop.common.ktx.showShortToast
+import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapter
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
@@ -21,6 +21,8 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
     @Inject
     lateinit var specificCategoriesAdapter: SpecificCategoriesAdapter
 
+    lateinit var extras: CategoriesViewData
+
     override fun getViewBinding(): FragmentSpecificCategoriesBinding {
         return FragmentSpecificCategoriesBinding.inflate(layoutInflater)
     }
@@ -29,6 +31,12 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
         return SpecificCategoriesViewModel::class.java
 
     }
+
+    override fun receiveExtras() {
+        super.receiveExtras()
+        extras = SpecificCategoriesFragmentArgs.fromBundle(requireArguments()).extras
+    }
+
     override fun setUpViews() {
         super.setUpViews()
 
@@ -46,7 +54,7 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = specificCategoriesAdapter
 
-        viewModel.getSpecificCategoriesData()
+        viewModel.getSpecificCategoriesData(extras)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.collector.collectLatest {
                 specificCategoriesAdapter.setItems(it)
@@ -55,6 +63,6 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
     }
 
     override fun onSpecificCategoriesClicked(specificCategory: SpecificCategoriesViewData) {
-        TODO("Not yet implemented")
+        showShortToast(requireContext(), "Wallpaper Clicked")
     }
 }

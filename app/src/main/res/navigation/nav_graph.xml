@@ -22,7 +22,11 @@
         android:id="@+id/categoriesFragment"
         android:name="com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragment"
         android:label="fragment_categories"
-        tools:layout="@layout/fragment_specific_categories" />
+        tools:layout="@layout/fragment_specific_categories" >
+        <argument
+            android:name="extras"
+            app:argType="com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData" />
+    </fragment>
     <fragment
         android:id="@+id/downloadFragment"
         android:name="com.mrigankar.wallpaperapp.downloads.DownloadFragment"

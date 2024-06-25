@@ -71,7 +71,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAd
     }
 
     override fun onCategoryClicked(category: CategoriesViewData) {
-        findNavController().navigate(R.id.categoriesFragment)
+        findNavController().navigate(
+            HomeFragmentDirections.actionHomeFragmentToCategoriesFragment(category)
+        )
 
     }
 
