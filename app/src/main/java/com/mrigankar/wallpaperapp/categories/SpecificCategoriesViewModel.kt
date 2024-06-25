@@ -1,5 +1,7 @@
 package com.mrigankar.wallpaperapp.categories
 
+import android.content.Intent
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.homedrop.common.base.BaseViewModel
@@ -20,23 +22,30 @@ class SpecificCategoriesViewModel @Inject constructor(): BaseViewModel() {
     private val channel = Channel<List<BaseViewType>>()
     val collector = channel.receiveAsFlow()
 
+
     fun getSpecificCategoriesData(){
 
         viewModelScope.launch(Dispatchers.IO) {
             val db = FirebaseFirestore.getInstance()
+
+
+
 
             val listSpecificCategory =
                 db.collection("categories").document("ZBkqDXJVdsijOzmzF6HX")
                     .collection("wallpapers").get().await()
             val lsc = listSpecificCategory.toObjects(SpecificCategoriesViewData::class.java)
 
-            val listCategoryTitle = db.collection("categories").get().await()
+            val listCategoryTitle = db.collection("categories").document("ZBkqDXJVdsijOzmzF6HX")
+                .collection("wallpapers").get().await()
             val lct = listCategoryTitle.toObjects(TitleData::class.java)
 
             channel.send(lct+lsc)
 
 
         }
+
+
 
 
 

@@ -23,7 +23,6 @@ class TitleViewBinder @Inject constructor(
     override fun bindData(binding: ItemTitleBinding, data: TitleData, position: Int) {
         binding.apply {
             tvTitle.text = data.title
-            tvTitle.text = data.name
         }
     }
 }

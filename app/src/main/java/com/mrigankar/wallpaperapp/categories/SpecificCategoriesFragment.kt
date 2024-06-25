@@ -1,5 +1,6 @@
 package com.mrigankar.wallpaperapp.categories
 
+import android.content.Intent
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
@@ -26,6 +27,7 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
 
     override fun getViewModelClass(): Class<SpecificCategoriesViewModel>? {
         return SpecificCategoriesViewModel::class.java
+
     }
     override fun setUpViews() {
         super.setUpViews()
