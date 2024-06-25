@@ -25,6 +25,7 @@ class ImageViewBinder(
             width = DeviceUtil.getDeviceWidth() / 3
         }
         return binding
+
     }
 
     override fun bindData(binding: ItemImageBinding, data: ImageViewData, position: Int) {
