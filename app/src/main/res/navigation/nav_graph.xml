@@ -12,20 +12,20 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_homeFragment_to_natureFragment"
-            app:destination="@id/natureFragment" />
+            android:id="@+id/action_homeFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_minimalFragment"
-            app:destination="@id/minimalFragment" />
+            android:id="@+id/action_homeFragment_to_downloadFragment"
+            app:destination="@id/downloadFragment" />
     </fragment>
     <fragment
-        android:id="@+id/natureFragment"
-        android:name="com.mrigankar.wallpaperapp.categories.nature.NatureFragment"
-        android:label="NatureFragment"
-        tools:layout="@layout/fragment_nature"/>
+        android:id="@+id/categoriesFragment"
+        android:name="com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragment"
+        android:label="fragment_categories"
+        tools:layout="@layout/fragment_specific_categories" />
     <fragment
-        android:id="@+id/minimalFragment"
-        android:name="com.mrigankar.wallpaperapp.categories.minimal.MinimalFragment"
-        android:label="MinimalFragment"
-        tools:layout="@layout/fragment_minimal"/>
+        android:id="@+id/downloadFragment"
+        android:name="com.mrigankar.wallpaperapp.downloads.DownloadFragment"
+        android:label="DownloadFragment"
+        tools:layout="@layout/fragment_download"/>
 </navigation>

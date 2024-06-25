@@ -35,7 +35,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 navController.navigate(R.id.homeFragment)
             }
             if (it.itemId == R.id.action_downloads) {
-               // navController.navigate(R.id.action_homeFragment_to_downloadFragment)
+               navController.navigate(R.id.action_homeFragment_to_downloadFragment)
             }
 
 

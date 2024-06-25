@@ -2,7 +2,7 @@ package com.mrigankar.wallpaperapp.ViewBinder.TitileBinder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.homedrop.common.ITEM_TITLE_BOM
+import com.homedrop.common.ITEM_TITLE
 import com.homedrop.common.base.ViewDataBinder
 import com.mrigankar.wallpaperapp.databinding.ItemTitleBinding
 import javax.inject.Inject
@@ -11,7 +11,7 @@ class TitleViewBinder @Inject constructor(
 
 ): ViewDataBinder<ItemTitleBinding, TitleData>() {
     override val viewType: Int
-        get() = ITEM_TITLE_BOM
+        get() = ITEM_TITLE
 
     override fun createBinder(parent: ViewGroup): ItemTitleBinding {
         return ItemTitleBinding.inflate(
@@ -23,6 +23,7 @@ class TitleViewBinder @Inject constructor(
     override fun bindData(binding: ItemTitleBinding, data: TitleData, position: Int) {
         binding.apply {
             tvTitle.text = data.title
+            tvTitle.text = data.name
         }
     }
 }
