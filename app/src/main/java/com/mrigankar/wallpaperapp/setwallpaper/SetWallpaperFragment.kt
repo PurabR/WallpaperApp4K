@@ -13,9 +13,11 @@ import com.homedrop.common.ktx.showShortToast
 import com.mrigankar.wallpaperapp.R
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
+import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.HomeAdapter
 import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
+import com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragmentArgs
 import com.mrigankar.wallpaperapp.databinding.FragmentHomeBinding
 import com.mrigankar.wallpaperapp.databinding.FragmentSetWallpaperBinding
 import com.mrigankar.wallpaperapp.home.HomeFragmentDirections
@@ -28,6 +30,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpaperViewModel>(){
 
+    @Inject
+    lateinit var setWallpaperAdapter: ImageAdapterListener
+    lateinit var extras: SpecificCategoriesViewData
+
     override fun getViewBinding(): FragmentSetWallpaperBinding {
         return FragmentSetWallpaperBinding.inflate(layoutInflater)
 
@@ -35,11 +41,16 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
     override fun getViewModelClass(): Class<SetWallpaperViewModel>? {
         return SetWallpaperViewModel::class.java
+
+    }
+
+    override fun receiveExtras() {
+        super.receiveExtras()
+        extras = SetWallpaperFragmentArgs.fromBundle(requireArguments()).extras
     }
 
     override fun setUpViews() {
         super.setUpViews()
-
 
 
     }
