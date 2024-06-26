@@ -16,6 +16,7 @@ import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.HomeAdapter
 import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
+import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragmentArgs
 import com.mrigankar.wallpaperapp.databinding.FragmentHomeBinding
@@ -31,7 +32,7 @@ import javax.inject.Inject
 class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpaperViewModel>(){
 
     @Inject
-    lateinit var setWallpaperAdapter: ImageAdapterListener
+    lateinit var setWallpaperAdapter: ImageAdapter
     lateinit var extras: SpecificCategoriesViewData
 
     override fun getViewBinding(): FragmentSetWallpaperBinding {
@@ -51,6 +52,13 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
     override fun setUpViews() {
         super.setUpViews()
+
+        viewModel.setwallpaper(extras)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.collector.collectLatest {
+                setWallpaperAdapter.setItems(it)
+            }
+        }
 
 
     }

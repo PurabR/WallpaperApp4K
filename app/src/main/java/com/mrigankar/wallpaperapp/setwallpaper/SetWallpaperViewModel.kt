@@ -5,6 +5,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.homedrop.common.base.BaseViewModel
 import com.homedrop.common.base.BaseViewType
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
+import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.Channel
@@ -22,7 +23,7 @@ class SetWallpaperViewModel @Inject constructor(
     val collector = channel.receiveAsFlow()
 
 
-    fun setwallpaper(extras: ImageViewData){
+    fun setwallpaper(extras: SpecificCategoriesViewData){
         viewModelScope.launch(Dispatchers.IO){
             val db = FirebaseFirestore.getInstance()
 
