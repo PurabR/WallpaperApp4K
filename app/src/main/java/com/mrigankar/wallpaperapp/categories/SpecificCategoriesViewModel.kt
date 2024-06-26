@@ -37,6 +37,7 @@ class SpecificCategoriesViewModel @Inject constructor(): BaseViewModel() {
 
             val listCategoryTitle = db.collection("categories").document(extras.id)
                 .collection("wallpapers").get().await()
+            
             val lct = listCategoryTitle.toObjects(TitleData::class.java)
 
             channel.send(lct+lsc)

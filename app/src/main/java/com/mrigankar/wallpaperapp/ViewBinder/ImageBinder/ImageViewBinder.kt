@@ -22,7 +22,7 @@ class ImageViewBinder(
             LayoutInflater.from(parent.context), parent, false
         )
         binding.imageView.updateLayoutParams {
-            width = DeviceUtil.getDeviceWidth() / 3
+            width = DeviceUtil.getDeviceWidth()
         }
         return binding
 

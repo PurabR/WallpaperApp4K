@@ -26,10 +26,22 @@
         <argument
             android:name="extras"
             app:argType="com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData" />
+        <action
+            android:id="@+id/action_categoriesFragment_to_setWallpaperFragment"
+            app:destination="@id/setWallpaperFragment" />
     </fragment>
     <fragment
         android:id="@+id/downloadFragment"
         android:name="com.mrigankar.wallpaperapp.downloads.DownloadFragment"
         android:label="DownloadFragment"
         tools:layout="@layout/fragment_download"/>
+    <fragment
+        android:id="@+id/setWallpaperFragment"
+        android:name="com.mrigankar.wallpaperapp.setwallpaper.SetWallpaperFragment"
+        android:label="fragment_set_wallpaper"
+        tools:layout="@layout/fragment_set_wallpaper" >
+        <argument
+            android:name="extras"
+            app:argType="com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData" />
+    </fragment>
 </navigation>
