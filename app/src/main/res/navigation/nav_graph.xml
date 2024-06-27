@@ -20,7 +20,7 @@
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
-        android:name="com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragment"
+        android:name="com.mrigankar.wallpaperapp.SpecificCategories.SpecificCategoriesFragment"
         android:label="fragment_categories"
         tools:layout="@layout/fragment_specific_categories" >
         <argument

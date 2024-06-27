@@ -1,11 +1,9 @@
-package com.mrigankar.wallpaperapp.categories
+package com.mrigankar.wallpaperapp.SpecificCategories
 
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
-import com.homedrop.common.ktx.showShortToast
-import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapter
@@ -71,3 +69,4 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
         )
     }
 }
+

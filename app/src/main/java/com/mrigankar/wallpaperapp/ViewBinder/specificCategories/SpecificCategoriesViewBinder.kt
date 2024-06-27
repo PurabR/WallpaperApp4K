@@ -1,15 +1,11 @@
 package com.mrigankar.wallpaperapp.ViewBinder.specificCategories
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.homedrop.common.ITEM_SPECIFIC_CATEGORIES
 import com.homedrop.common.base.ViewDataBinder
 import com.homedrop.common.util.image.loadImage
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
-import com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragment
-import com.mrigankar.wallpaperapp.databinding.ItemCategoriesBinding
 import com.mrigankar.wallpaperapp.databinding.ItemImageBinding
 import javax.inject.Inject
 

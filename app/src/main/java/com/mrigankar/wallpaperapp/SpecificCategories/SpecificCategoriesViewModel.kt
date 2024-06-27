@@ -1,4 +1,4 @@
-package com.mrigankar.wallpaperapp.categories
+package com.mrigankar.wallpaperapp.SpecificCategories
 
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore

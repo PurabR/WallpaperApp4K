@@ -1,7 +1,5 @@
 package com.mrigankar.wallpaperapp.adapter
 
-import android.content.Context
-import android.content.Intent
 import androidx.viewbinding.ViewBinding
 import com.homedrop.common.base.BaseRecyclerAdapter
 import com.homedrop.common.base.BaseViewType
@@ -10,7 +8,6 @@ import com.mrigankar.wallpaperapp.ViewBinder.TitileBinder.TitleViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.bestofmonth.bomViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
-import com.mrigankar.wallpaperapp.categories.SpecificCategoriesViewModel
 import javax.inject.Inject
 
 class HomeAdapter @Inject constructor(

@@ -4,8 +4,10 @@ import androidx.fragment.app.Fragment
 import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
-import com.mrigankar.wallpaperapp.categories.SpecificCategoriesFragment
+import com.mrigankar.wallpaperapp.SpecificCategories.SpecificCategoriesFragment
+import com.mrigankar.wallpaperapp.adapter.SetWallpaperAdapterListener
 import com.mrigankar.wallpaperapp.home.HomeFragment
+import com.mrigankar.wallpaperapp.setwallpaper.SetWallpaperFragment
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -35,6 +37,14 @@ object AdapterModule {
     fun provideSpecificAdapterListener(fragment: Fragment): SpecificCategoriesAdapterListener {
         return when(fragment) {
             is SpecificCategoriesFragment -> fragment
+            else -> throw IllegalArgumentException("")
+        }
+    }
+
+    @Provides
+    fun provideSetWallpaperListener(fragment: Fragment): SetWallpaperAdapterListener {
+        return when(fragment) {
+            is SetWallpaperFragment -> fragment
             else -> throw IllegalArgumentException("")
         }
     }

@@ -8,6 +8,7 @@ const val ITEM_BOM= 2
 const val ITEM_IMAGE = 3
 const val ITEM_TITLE = 4
 const val ITEM_SPECIFIC_CATEGORIES = 5
+const val ITEM_SET_WALLPAPER =6
 
 @IntDef(
     ITEM_NONE,
@@ -15,7 +16,8 @@ const val ITEM_SPECIFIC_CATEGORIES = 5
     ITEM_BOM,
     ITEM_IMAGE,
     ITEM_TITLE,
-    ITEM_SPECIFIC_CATEGORIES
+    ITEM_SPECIFIC_CATEGORIES,
+    ITEM_SET_WALLPAPER
 
 )
 @Retention(AnnotationRetention.SOURCE)
