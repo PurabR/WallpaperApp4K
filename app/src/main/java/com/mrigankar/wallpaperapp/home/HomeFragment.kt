@@ -63,7 +63,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAd
             }
         }
 
-
     }
 
     override fun onImageClicked(image: ImageViewData) {

@@ -41,7 +41,7 @@
         android:label="fragment_set_wallpaper"
         tools:layout="@layout/fragment_set_wallpaper" >
         <argument
-            android:name="extras"
+            android:name="setExtra"
             app:argType="com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData" />
     </fragment>
 </navigation>

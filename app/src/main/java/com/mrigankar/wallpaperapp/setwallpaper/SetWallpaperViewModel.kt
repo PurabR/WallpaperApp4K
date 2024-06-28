@@ -25,12 +25,13 @@ class SetWallpaperViewModel @Inject constructor(
     val collector = channel.receiveAsFlow()
 
 
-    fun getSetWallpaper(extras: SpecificCategoriesViewData){
+    fun getSetWallpaper(setExtra: SpecificCategoriesViewData){
         viewModelScope.launch(Dispatchers.IO){
             val db = FirebaseFirestore.getInstance()
 
-            val listSetWallpaper = db.collection("categories").document(extras.id)
+            val listSetWallpaper = db.collection("categories").document(setExtra.id)
                 .collection("wallpapers").get().await()
+
             val lsw = listSetWallpaper.toObjects(ImageViewData::class.java)
 
             channel.send(lsw)

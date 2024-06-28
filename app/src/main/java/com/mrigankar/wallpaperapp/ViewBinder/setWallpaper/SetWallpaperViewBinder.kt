@@ -15,23 +15,24 @@ import com.mrigankar.wallpaperapp.adapter.SetWallpaperAdapterListener
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
 import com.mrigankar.wallpaperapp.databinding.ItemBestOfMonthBinding
 import com.mrigankar.wallpaperapp.databinding.ItemImageBinding
+import com.mrigankar.wallpaperapp.databinding.ItemSetWallpaperBinding
 import javax.inject.Inject
 
 class SetWallpaperViewBinder @Inject constructor(
     private val listener: SetWallpaperAdapterListener
-): ViewDataBinder<ItemImageBinding, SetWallpaperViewData>() {
+): ViewDataBinder<ItemSetWallpaperBinding, SetWallpaperViewData>() {
     override val viewType: Int
         get() = ITEM_SET_WALLPAPER
 
-    override fun createBinder(parent: ViewGroup): ItemImageBinding {
-        return ItemImageBinding.inflate(
+    override fun createBinder(parent: ViewGroup): ItemSetWallpaperBinding {
+        return ItemSetWallpaperBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
     }
 
 
     override fun bindData(
-        binding: ItemImageBinding,
+        binding: ItemSetWallpaperBinding,
         data: SetWallpaperViewData,
         position: Int
     ) {

@@ -9,6 +9,5 @@ import kotlinx.parcelize.Parcelize
 data class SpecificCategoriesViewData (
     val id : String = " ",
     val link : String = " ",
-    val name : String = " ",
     override val viewType: Int = ITEM_SPECIFIC_CATEGORIES
 ): BaseViewType, Parcelable

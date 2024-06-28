@@ -3,6 +3,7 @@ package com.mrigankar.wallpaperapp.setwallpaper
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
+import com.homedrop.common.ktx.showShortToast
 import com.mrigankar.wallpaperapp.SpecificCategories.SpecificCategoriesFragmentArgs
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
@@ -25,7 +26,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
     @Inject
     lateinit var setWallpaperAdapter: SetWallpaperAdapter
-    lateinit var extras: SpecificCategoriesViewData
+    lateinit var setExtra: SpecificCategoriesViewData
 
     override fun getViewBinding(): FragmentSetWallpaperBinding {
         return FragmentSetWallpaperBinding.inflate(layoutInflater)
@@ -39,7 +40,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
     override fun receiveExtras() {
         super.receiveExtras()
-        extras = SetWallpaperFragmentArgs.fromBundle(requireArguments()).extras
+        setExtra = SetWallpaperFragmentArgs.fromBundle(requireArguments()).setExtra
     }
 
     override fun setUpViews() {
@@ -58,7 +59,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = setWallpaperAdapter
 
-        viewModel.getSetWallpaper(extras)
+        viewModel.getSetWallpaper(setExtra)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.collector.collectLatest {
                 setWallpaperAdapter.setItems(it)
@@ -69,7 +70,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
     }
 
     override fun onSetWallpaperClicked(setWallpaper: SetWallpaperViewData) {
-        TODO("Not yet implemented")
+        showShortToast(requireContext(), "Image clicked")
     }
 
 //

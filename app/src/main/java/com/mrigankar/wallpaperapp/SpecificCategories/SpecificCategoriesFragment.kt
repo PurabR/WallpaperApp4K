@@ -5,6 +5,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
+import com.mrigankar.wallpaperapp.ViewBinder.setWallpaper.SetWallpaperViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapter
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
