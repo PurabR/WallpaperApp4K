@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.homedrop.common.base.BaseFragment
 import com.homedrop.common.ktx.showShortToast
+import com.homedrop.common.util.image.loadImage
 import com.mrigankar.wallpaperapp.R
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
@@ -66,7 +67,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAd
     }
 
     override fun onImageClicked(image: ImageViewData) {
-        showShortToast(requireContext(), "Image clicked")
+      findNavController().navigate(
+          HomeFragmentDirections.actionHomeFragmentToSetWallpaperFragment(image)
+      )
     }
 
     override fun onCategoryClicked(category: CategoriesViewData) {

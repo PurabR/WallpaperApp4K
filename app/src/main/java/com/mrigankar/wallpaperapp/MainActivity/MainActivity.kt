@@ -3,6 +3,8 @@ package com.mrigankar.wallpaperapp.MainActivity
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.homedrop.common.base.BaseActivity
+import com.homedrop.common.ktx.gone
+import com.homedrop.common.ktx.visible
 import com.mrigankar.wallpaperapp.R
 import com.mrigankar.wallpaperapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +31,16 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment_content_main) as NavHostFragment
         navController = navHostFragment.navController
+
+        navController.addOnDestinationChangedListener { controller, destination, arguments ->
+            if (destination.id == R.id.homeFragment) {
+                binding.ivMarvel.visible()
+                binding.bottomNavigation.visible()
+            } else {
+                binding.bottomNavigation.gone()
+                binding.ivMarvel.gone()
+            }
+        }
 
         binding.bottomNavigation.setOnItemSelectedListener {
             if (it.itemId == R.id.action_home) {

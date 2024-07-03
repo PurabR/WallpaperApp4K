@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_homeFragment_to_downloadFragment"
             app:destination="@id/downloadFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_setWallpaperFragment"
+            app:destination="@id/setWallpaperFragment" />
     </fragment>
     <fragment
         android:id="@+id/categoriesFragment"
@@ -41,7 +44,7 @@
         android:label="fragment_set_wallpaper"
         tools:layout="@layout/fragment_set_wallpaper" >
         <argument
-            android:name="setExtra"
-            app:argType="com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData" />
+            android:name="extras"
+            app:argType="com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData" />
     </fragment>
 </navigation>

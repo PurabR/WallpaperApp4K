@@ -4,6 +4,7 @@ import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.homedrop.common.base.BaseViewModel
 import com.homedrop.common.base.BaseViewType
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.TitileBinder.TitleData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
@@ -33,14 +34,9 @@ class SpecificCategoriesViewModel @Inject constructor(): BaseViewModel() {
             val listSpecificCategory =
                 db.collection("categories").document(extras.id)
                     .collection("wallpapers").get().await()
-            val lsc = listSpecificCategory.toObjects(SpecificCategoriesViewData::class.java)
+            val lsc = listSpecificCategory.toObjects(ImageViewData::class.java)
 
-            val listCategoryTitle = db.collection("categories").document(extras.id)
-                .collection("wallpapers").get().await()
-            
-            val lct = listCategoryTitle.toObjects(TitleData::class.java)
-
-            channel.send(lct+lsc)
+            channel.send(lsc)
 
 
         }

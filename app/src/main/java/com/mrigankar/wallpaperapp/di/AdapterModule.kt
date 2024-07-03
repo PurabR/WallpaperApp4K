@@ -21,6 +21,7 @@ object AdapterModule {
     fun provideImageAdapterListener(fragment: Fragment): ImageAdapterListener {
         return when(fragment) {
             is HomeFragment -> fragment
+            is SpecificCategoriesFragment -> fragment
             else -> throw IllegalArgumentException("")
         }
     }
@@ -29,14 +30,6 @@ object AdapterModule {
     fun provideHomeAdapterListener(fragment: Fragment): HomeAdapterListener {
         return when(fragment) {
             is HomeFragment -> fragment
-            else -> throw IllegalArgumentException("")
-        }
-    }
-
-    @Provides
-    fun provideSpecificAdapterListener(fragment: Fragment): SpecificCategoriesAdapterListener {
-        return when(fragment) {
-            is SpecificCategoriesFragment -> fragment
             else -> throw IllegalArgumentException("")
         }
     }

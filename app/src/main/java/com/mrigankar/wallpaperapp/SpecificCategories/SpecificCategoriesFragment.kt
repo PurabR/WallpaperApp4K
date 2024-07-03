@@ -4,9 +4,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import com.mrigankar.wallpaperapp.ViewBinder.setWallpaper.SetWallpaperViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
+import com.mrigankar.wallpaperapp.adapter.ImageAdapter
+import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapter
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
 
@@ -17,10 +21,11 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBinding, SpecificCategoriesViewModel>(), SpecificCategoriesAdapterListener {
+class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBinding, SpecificCategoriesViewModel>(), ImageAdapterListener {
 
-    @Inject
-    lateinit var specificCategoriesAdapter: SpecificCategoriesAdapter
+    private val imagesAdapter: ImageAdapter by lazy {
+        ImageAdapter(ImageViewBinder(this))
+    }
 
     lateinit var extras: CategoriesViewData
 
@@ -46,27 +51,26 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
         layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 when (position) {
-                    0 -> return 6
+                    1 -> return 6
                     else -> return 3
 
                 }
             }
         }
         binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = specificCategoriesAdapter
+        binding.recyclerView.adapter = imagesAdapter
 
         viewModel.getSpecificCategoriesData(extras)
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.collector.collectLatest {
-                specificCategoriesAdapter.setItems(it)
+                imagesAdapter.setItems(it)
             }
         }
     }
 
-
-    override fun onSpecificCategoriesClicked(specificCategory: SpecificCategoriesViewData) {
+    override fun onImageClicked(image: ImageViewData) {
         findNavController().navigate(
-            SpecificCategoriesFragmentDirections.actionCategoriesFragmentToSetWallpaperFragment(specificCategory)
+            SpecificCategoriesFragmentDirections.actionCategoriesFragmentToSetWallpaperFragment(image)
         )
     }
 }

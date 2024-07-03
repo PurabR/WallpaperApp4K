@@ -4,6 +4,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
 import com.homedrop.common.ktx.showShortToast
+import com.homedrop.common.util.image.loadImage
 import com.mrigankar.wallpaperapp.SpecificCategories.SpecificCategoriesFragmentArgs
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
@@ -26,7 +27,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
     @Inject
     lateinit var setWallpaperAdapter: SetWallpaperAdapter
-    lateinit var setExtra: SpecificCategoriesViewData
+    lateinit var extras: ImageViewData
 
     override fun getViewBinding(): FragmentSetWallpaperBinding {
         return FragmentSetWallpaperBinding.inflate(layoutInflater)
@@ -40,32 +41,34 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
     override fun receiveExtras() {
         super.receiveExtras()
-        setExtra = SetWallpaperFragmentArgs.fromBundle(requireArguments()).setExtra
+        extras = SetWallpaperFragmentArgs.fromBundle(requireArguments()).extras
     }
 
     override fun setUpViews() {
         super.setUpViews()
 
-        val layoutManager = GridLayoutManager(requireContext(), 6)
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                when (position) {
-                    0 -> return 6
-                    else -> return 3
+        loadImage(binding.imageWallpaper,extras.link)
 
-                }
-            }
-        }
-        binding.recyclerView.layoutManager = layoutManager
-        binding.recyclerView.adapter = setWallpaperAdapter
-
-        viewModel.getSetWallpaper(setExtra)
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.collector.collectLatest {
-                setWallpaperAdapter.setItems(it)
-            }
-        }
-
+//        val layoutManager = GridLayoutManager(requireContext(), 6)
+//        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+//            override fun getSpanSize(position: Int): Int {
+//                when (position) {
+//                    0 -> return 6
+//                    else -> return 3
+//
+//                }
+//            }
+//        }
+//        binding.recyclerView.layoutManager = layoutManager
+//        binding.recyclerView.adapter = setWallpaperAdapter
+//
+//        viewModel.getSetWallpaper(extras)
+//        viewLifecycleOwner.lifecycleScope.launch {
+//            viewModel.collector.collectLatest {
+//                setWallpaperAdapter.setItems(it)
+//            }
+//        }
+//
 
     }
 
