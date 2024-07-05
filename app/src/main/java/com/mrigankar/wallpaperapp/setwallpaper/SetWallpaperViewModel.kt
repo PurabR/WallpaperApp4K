@@ -1,5 +1,7 @@
 package com.mrigankar.wallpaperapp.setwallpaper
 
+import android.app.WallpaperManager
+import android.widget.Button
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.firestore.FirebaseFirestore
 import com.homedrop.common.base.BaseViewModel
@@ -24,7 +26,6 @@ class SetWallpaperViewModel @Inject constructor(
     private val channel= Channel<List<BaseViewType>>()
     val collector = channel.receiveAsFlow()
 
-
     fun getSetWallpaper(setExtra: SpecificCategoriesViewData){
         viewModelScope.launch(Dispatchers.IO){
             val db = FirebaseFirestore.getInstance()
@@ -37,7 +38,6 @@ class SetWallpaperViewModel @Inject constructor(
             channel.send(lsw)
         }
     }
-
 
 
 //;.;.

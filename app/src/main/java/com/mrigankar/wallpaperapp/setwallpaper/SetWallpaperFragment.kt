@@ -1,5 +1,7 @@
 package com.mrigankar.wallpaperapp.setwallpaper
 
+import android.app.WallpaperManager
+import android.widget.Button
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
@@ -29,6 +31,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
     lateinit var setWallpaperAdapter: SetWallpaperAdapter
     lateinit var extras: ImageViewData
 
+
     override fun getViewBinding(): FragmentSetWallpaperBinding {
         return FragmentSetWallpaperBinding.inflate(layoutInflater)
 
@@ -47,7 +50,13 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
     override fun setUpViews() {
         super.setUpViews()
 
+
+
+
         loadImage(binding.imageWallpaper,extras.link)
+
+
+
 
 //        val layoutManager = GridLayoutManager(requireContext(), 6)
 //        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
@@ -75,6 +84,14 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
     override fun onSetWallpaperClicked(setWallpaper: SetWallpaperViewData) {
         showShortToast(requireContext(), "Image clicked")
     }
+
+    fun initButtons() {
+        binding.setWallpaper.setOnClickListener{ }
+        binding.downloadImage.setOnClickListener {  }
+
+    }
+
+    fun downloadImage
 
 //
 }

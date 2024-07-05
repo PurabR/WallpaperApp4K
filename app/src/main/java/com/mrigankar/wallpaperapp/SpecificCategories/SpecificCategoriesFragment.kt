@@ -7,7 +7,6 @@ import com.homedrop.common.base.BaseFragment
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
-import com.mrigankar.wallpaperapp.ViewBinder.setWallpaper.SetWallpaperViewData
 import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
