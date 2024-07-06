@@ -31,4 +31,6 @@ interface SetWallpaperAdapterListener {
 
     fun onSetWallpaperClicked(setWallpaper: SetWallpaperViewData)
 
+    //aaaa
+
 }
