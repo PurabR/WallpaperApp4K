@@ -72,6 +72,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAd
       )
     }
 
+    override fun isHomeScreen(): Boolean {
+        return true
+    }
+
     override fun onCategoryClicked(category: CategoriesViewData) {
         findNavController().navigate(
             HomeFragmentDirections.actionHomeFragmentToCategoriesFragment(category)

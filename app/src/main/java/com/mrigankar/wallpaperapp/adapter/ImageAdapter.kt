@@ -25,4 +25,6 @@ interface ImageAdapterListener {
 
     fun onImageClicked(image: ImageViewData)
 
+    fun isHomeScreen(): Boolean
+
 }

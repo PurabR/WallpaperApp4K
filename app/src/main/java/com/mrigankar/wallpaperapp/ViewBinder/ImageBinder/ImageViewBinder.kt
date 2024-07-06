@@ -21,8 +21,10 @@ class ImageViewBinder(
         val binding = ItemImageBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        binding.imageView.updateLayoutParams {
-            width = DeviceUtil.getDeviceWidth()
+        if (listener.isHomeScreen()) {
+            binding.imageView.updateLayoutParams {
+                width = DeviceUtil.getDeviceWidth() / 3
+            }
         }
         return binding
 

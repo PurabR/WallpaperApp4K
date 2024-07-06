@@ -46,5 +46,8 @@
         <argument
             android:name="extras"
             app:argType="com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData" />
+        <action
+            android:id="@+id/action_setWallpaperFragment_to_categoriesFragment"
+            app:destination="@id/categoriesFragment" />
     </fragment>
 </navigation>

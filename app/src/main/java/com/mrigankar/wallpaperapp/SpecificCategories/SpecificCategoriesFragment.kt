@@ -46,16 +46,16 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
         super.setUpViews()
 
 
-        val layoutManager = GridLayoutManager(requireContext(), 6)
-        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int): Int {
-                when (position) {
-                    1 -> return 6
-                    else -> return 3
-
-                }
-            }
-        }
+        val layoutManager = GridLayoutManager(requireContext(), 2)
+//        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+//            override fun getSpanSize(position: Int): Int {
+//                when (position) {
+//                    1 -> return 6
+//                    else -> return 3
+//
+//                }
+//            }
+//        }
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = imagesAdapter
 
@@ -65,6 +65,10 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
                 imagesAdapter.setItems(it)
             }
         }
+    }
+
+    override fun isHomeScreen(): Boolean {
+        return false
     }
 
     override fun onImageClicked(image: ImageViewData) {

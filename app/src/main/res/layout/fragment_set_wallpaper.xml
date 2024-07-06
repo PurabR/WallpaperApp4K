@@ -10,11 +10,27 @@
         android:id="@+id/image_wallpaper"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/download_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:navigationIcon="@drawable/ic_back"
+        android:background="#22000000"
+        app:title="s"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+
 
     <ImageButton
         android:id="@+id/download_image"
