@@ -24,7 +24,8 @@
         android:layout_height="wrap_content"
         app:navigationIcon="@drawable/ic_back"
         android:background="#22000000"
-        app:title="s"
+        app:title="Set as your wallpaper"
+        app:titleTextColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

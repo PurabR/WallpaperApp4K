@@ -58,6 +58,9 @@ class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBindin
 //        }
         binding.recyclerView.layoutManager = layoutManager
         binding.recyclerView.adapter = imagesAdapter
+        binding.toolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
 
         viewModel.getSpecificCategoriesData(extras)
         viewLifecycleOwner.lifecycleScope.launch {
