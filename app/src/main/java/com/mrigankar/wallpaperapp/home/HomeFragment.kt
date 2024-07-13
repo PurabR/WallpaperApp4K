@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 import javax.inject.Inject
-
+//added all
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(), ImageAdapterListener, HomeAdapterListener {
 
