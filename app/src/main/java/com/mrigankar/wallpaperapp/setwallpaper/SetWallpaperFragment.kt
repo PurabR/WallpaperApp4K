@@ -103,7 +103,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
                                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                                     .setDestinationInExternalPublicDir(
                                         Environment.DIRECTORY_PICTURES,
-                                        File.separator + "downloaded image" + ".jpg"
+                                        "4KWallpaper Downloads" + File.separator + "downloaded image" + ".jpg"
                                     )
                                 dm.enqueue(request)
                                 showShortToast(requireContext(), "Image downloading started")

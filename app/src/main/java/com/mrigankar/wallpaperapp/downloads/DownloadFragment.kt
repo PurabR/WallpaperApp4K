@@ -15,6 +15,7 @@ class DownloadFragment: BaseFragment<FragmentDownloadBinding, DownloadViewModel>
     override fun setUpViews() {
         super.setUpViews()
 
+
         binding.ivBackBtn.setOnClickListener {
             findNavController().navigateUp()
         }
