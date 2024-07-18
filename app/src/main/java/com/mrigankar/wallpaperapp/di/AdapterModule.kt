@@ -6,6 +6,7 @@ import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
 import com.mrigankar.wallpaperapp.SpecificCategories.SpecificCategoriesFragment
 import com.mrigankar.wallpaperapp.adapter.SetWallpaperAdapterListener
+import com.mrigankar.wallpaperapp.downloads.DownloadFragment
 import com.mrigankar.wallpaperapp.home.HomeFragment
 import com.mrigankar.wallpaperapp.setwallpaper.SetWallpaperFragment
 import dagger.Module
@@ -22,6 +23,7 @@ object AdapterModule {
         return when(fragment) {
             is HomeFragment -> fragment
             is SpecificCategoriesFragment -> fragment
+            is DownloadFragment -> fragment
             else -> throw IllegalArgumentException("")
         }
     }
