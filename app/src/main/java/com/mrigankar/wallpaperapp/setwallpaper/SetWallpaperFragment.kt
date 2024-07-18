@@ -58,9 +58,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
             findNavController().navigateUp()
         }
 
-
-
-        binding.setWallpaper.setOnClickListener {
+        binding.llSetWallpaper.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launchIO {
                 Glide.with(requireContext()).asBitmap().load(extras.link)
                     .into(object : CustomTarget<Bitmap>() {
@@ -83,7 +81,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
         }
 
-        binding.downloadImage.setOnClickListener {
+        binding.llDownload.setOnClickListener {
             viewLifecycleOwner.lifecycleScope.launchIO {
                 Glide.with(requireContext()).asBitmap().load(extras.link)
                     .into(object : CustomTarget<Bitmap>() {
@@ -119,36 +117,7 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
         }
 
-
-
-
-
-
-
-
         loadImage(binding.imageWallpaper, extras.link)
-
-
-//        val layoutManager = GridLayoutManager(requireContext(), 6)
-//        layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-//            override fun getSpanSize(position: Int): Int {
-//                when (position) {
-//                    0 -> return 6
-//                    else -> return 3
-//
-//                }
-//            }
-//        }
-//        binding.recyclerView.layoutManager = layoutManager
-//        binding.recyclerView.adapter = setWallpaperAdapter
-//
-//        viewModel.getSetWallpaper(extras)
-//        viewLifecycleOwner.lifecycleScope.launch {
-//            viewModel.collector.collectLatest {
-//                setWallpaperAdapter.setItems(it)
-//            }
-//        }
-//
 
     }
 
@@ -161,5 +130,3 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
 
 
 }
-
-//

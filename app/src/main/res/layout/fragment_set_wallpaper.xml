@@ -12,53 +12,81 @@
         android:layout_height="0dp"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toTopOf="@+id/download_image"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:navigationIcon="@drawable/ic_back"
-        android:background="#22000000"
-        app:title="Set as your wallpaper"
-        app:titleTextColor="@color/white"
+        android:fontFamily="@font/primary_font"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_back"
+        app:title="       Set as your wallpaper"
+        app:titleTextColor="#B5C0D0" />
 
-
-
-
-
-    <ImageButton
-        android:id="@+id/download_image"
-        style="@style/ClickableTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+    <LinearLayout
+        android:id="@+id/ll_download"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/background"
+        android:gravity="bottom|center_vertical"
+        android:orientation="vertical"
+        android:layout_marginBottom="46dp"
+        android:layout_marginStart="78dp"
         android:padding="10dp"
-        android:src="@drawable/ic_doc_download"
-        android:text="Set Wallpaper"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.136"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent">
 
-    <ImageButton
-        android:id="@+id/set_wallpaper"
-        style="@style/ClickableTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="36dp"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_doc_download" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="Download"
+            android:fontFamily="@font/primary_font"
+            android:textColor="#B5C0D0"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_set_wallpaper"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
+        android:background="@drawable/background"
+        android:gravity="bottom|center_vertical"
+        android:orientation="vertical"
+        android:layout_marginBottom="46dp"
+        android:layout_marginEnd="78dp"
         android:padding="10dp"
-        android:src="@drawable/ic_set_wallpaper"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.809"
-        app:layout_constraintStart_toEndOf="@+id/download_image" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_set_wallpaper" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:gravity="center"
+            android:text="Set"
+            android:fontFamily="@font/primary_font"
+            android:textColor="#B5C0D0"
+            android:textSize="13sp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
