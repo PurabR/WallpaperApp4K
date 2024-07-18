@@ -93,17 +93,18 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
                             transition: Transition<in Bitmap>?
                         ) {
                             try {
+                                val filename = "${System.currentTimeMillis()}.jpg"
                                 val dm = requireContext().getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
                                 val downloaduri = Uri.parse(extras.link)
                                 val request = DownloadManager.Request(downloaduri)
                                 request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI or DownloadManager.Request.NETWORK_MOBILE)
                                     .setAllowedOverRoaming(false)
-                                    .setTitle("downloaded image")
+                                    .setTitle(filename)
                                     .setMimeType("image/jpeg") // Your file type. You can use this code to download other file types also.
                                     .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
                                     .setDestinationInExternalPublicDir(
                                         Environment.DIRECTORY_PICTURES,
-                                        "4KWallpaper Downloads" + File.separator + "downloaded image" + ".jpg"
+                                        "4KWallpaper Downloads" + File.separator + filename
                                     )
                                 dm.enqueue(request)
                                 showShortToast(requireContext(), "Image downloading started")
