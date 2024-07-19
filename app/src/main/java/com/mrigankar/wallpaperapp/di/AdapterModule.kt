@@ -5,6 +5,7 @@ import com.mrigankar.wallpaperapp.adapter.HomeAdapterListener
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
 import com.mrigankar.wallpaperapp.SpecificCategories.SpecificCategoriesFragment
+import com.mrigankar.wallpaperapp.adapter.DownloadAdapterListener
 import com.mrigankar.wallpaperapp.adapter.SetWallpaperAdapterListener
 import com.mrigankar.wallpaperapp.downloads.DownloadFragment
 import com.mrigankar.wallpaperapp.home.HomeFragment
@@ -23,7 +24,6 @@ object AdapterModule {
         return when(fragment) {
             is HomeFragment -> fragment
             is SpecificCategoriesFragment -> fragment
-            is DownloadFragment -> fragment
             else -> throw IllegalArgumentException("")
         }
     }
@@ -40,6 +40,14 @@ object AdapterModule {
     fun provideSetWallpaperListener(fragment: Fragment): SetWallpaperAdapterListener {
         return when(fragment) {
             is SetWallpaperFragment -> fragment
+            else -> throw IllegalArgumentException("")
+        }
+    }
+
+    @Provides
+    fun downloadListener(fragment: Fragment): DownloadAdapterListener {
+        return when(fragment) {
+            is DownloadFragment -> fragment
             else -> throw IllegalArgumentException("")
         }
     }

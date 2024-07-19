@@ -2,20 +2,28 @@ package com.mrigankar.wallpaperapp.downloads
 
 import android.os.Environment
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.homedrop.common.base.BaseFragment
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
+import com.mrigankar.wallpaperapp.ViewBinder.downloads.downloadViewBinder
+import com.mrigankar.wallpaperapp.ViewBinder.downloads.downloadViewData
+import com.mrigankar.wallpaperapp.adapter.DownloadAdapter
+import com.mrigankar.wallpaperapp.adapter.DownloadAdapterListener
 import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
 import com.mrigankar.wallpaperapp.databinding.FragmentDownloadBinding
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import java.io.File
 
-class DownloadFragment: BaseFragment<FragmentDownloadBinding, DownloadViewModel>(), ImageAdapterListener {
+class DownloadFragment : BaseFragment<FragmentDownloadBinding, DownloadViewModel>(),
+    DownloadAdapterListener {
 
-    private val imagesAdapter: ImageAdapter by lazy {
-        ImageAdapter(ImageViewBinder(this))
+    private val downloadAdapter: DownloadAdapter by lazy {
+        DownloadAdapter(downloadViewBinder(this))
     }
 
     override fun getViewBinding(): FragmentDownloadBinding {
@@ -25,44 +33,31 @@ class DownloadFragment: BaseFragment<FragmentDownloadBinding, DownloadViewModel>
     override fun getViewModelClass(): Class<DownloadViewModel>? {
         return DownloadViewModel::class.java
     }
+
     override fun setUpViews() {
         super.setUpViews()
 
+        binding.recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        binding.recyclerView.adapter = downloadAdapter
 
 
         binding.ivBackBtn.setOnClickListener {
             findNavController().navigateUp()
         }
 
-        val allFiles: Array<File>
-        val imageList = arrayListOf<String>()
-
-        val targetPath = Environment.getExternalStorageDirectory().absolutePath+"/Pictures/4KWallpaper Downloads"
-
-        val targetFile= File(targetPath)
-        allFiles = targetFile.listFiles()!!
-
-        for (data in allFiles){
-            imageList.add(data.absolutePath)
+        viewModel.getDownloads()
+        viewLifecycleOwner.lifecycleScope.launch{
+            viewModel.collector.collectLatest {
+                downloadAdapter.setItems(it)
+            }
         }
-
-        for(i in imageList){
-            Log.e("@@@@@", "onCreateView:"+i)
-        }
-
-        binding.recyclerView.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        binding.recyclerView.adapter = imagesAdapter
+    }
 
 
-
+    override fun onImageClicked(image: downloadViewData) {
 
     }
 
-    override fun onImageClicked(image: ImageViewData) {
-        TODO("Not yet implemented")
-    }
 
-    override fun isHomeScreen(): Boolean {
-        TODO("Not yet implemented")
-    }
 }

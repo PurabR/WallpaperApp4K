@@ -7,6 +7,8 @@ import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getSystemService
 import androidx.lifecycle.lifecycleScope
@@ -67,11 +69,15 @@ class SetWallpaperFragment : BaseFragment<FragmentSetWallpaperBinding, SetWallpa
                             resource: Bitmap,
                             transition: Transition<in Bitmap>?
                         ) {
-                            val wallpaperManger =
-                                requireContext().getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
-                            wallpaperManger.setBitmap(resource)
+                            Handler(Looper.getMainLooper()).post{
+                                val wallpaperManger =
+                                    requireContext().getSystemService(Context.WALLPAPER_SERVICE) as WallpaperManager
+                                wallpaperManger.setBitmap(resource)
 
-                            showShortToast(requireContext(), "Wallpaper Successfully set")
+
+                                showShortToast(requireContext(), "Wallpaper Successfully set")
+                            }
+
                         }
 
                         override fun onLoadCleared(placeholder: Drawable?) {
