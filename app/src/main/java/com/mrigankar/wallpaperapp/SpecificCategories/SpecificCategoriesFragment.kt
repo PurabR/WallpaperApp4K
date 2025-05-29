@@ -7,17 +7,13 @@ import com.homedrop.common.base.BaseFragment
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
 import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
 import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
-import com.mrigankar.wallpaperapp.ViewBinder.specificCategories.SpecificCategoriesViewData
 import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.adapter.ImageAdapterListener
-import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapter
-import com.mrigankar.wallpaperapp.adapter.SpecificCategoriesAdapterListener
 
 import com.mrigankar.wallpaperapp.databinding.FragmentSpecificCategoriesBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SpecificCategoriesFragment : BaseFragment<FragmentSpecificCategoriesBinding, SpecificCategoriesViewModel>(), ImageAdapterListener {

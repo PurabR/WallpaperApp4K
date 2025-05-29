@@ -1,5 +1,8 @@
 [versions]
 agp = "8.5.0"
+androidxCameraView = "1.3.1"
+cameraLifecycleVersion = "1.3.1"
+googleFaceDetection = "16.1.7"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -13,9 +16,17 @@ navigationUiKtx = "2.7.7"
 googleGmsGoogleServices = "4.4.2"
 firebaseFirestore = "25.0.0"
 firebaseFirestoreKtx = "25.0.0"
+playServicesMlkitFaceDetection = "17.1.0"
+cameraLifecycle = "1.4.2"
+cameraView = "1.4.2"
 
 [libraries]
+androidx-camera-camera2 = { module = "androidx.camera:camera-camera2", version.ref = "androidxCameraView" }
+androidx-camera-core = { module = "androidx.camera:camera-core", version.ref = "androidxCameraView" }
+androidx-camera-lifecycle-v131 = { module = "androidx.camera:camera-lifecycle", version.ref = "cameraLifecycleVersion" }
+androidx-camera-view-v131 = { module = "androidx.camera:camera-view", version.ref = "androidxCameraView" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+google-face-detection = { module = "com.google.mlkit:face-detection", version.ref = "googleFaceDetection" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -26,6 +37,9 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore", version.ref = "firebaseFirestore" }
 firebase-firestore-ktx = { group = "com.google.firebase", name = "firebase-firestore-ktx", version.ref = "firebaseFirestoreKtx" }
+play-services-mlkit-face-detection = { module = "com.google.android.gms:play-services-mlkit-face-detection", version.ref = "playServicesMlkitFaceDetection" }
+androidx-camera-lifecycle = { group = "androidx.camera", name = "camera-lifecycle", version.ref = "cameraLifecycle" }
+androidx-camera-view = { group = "androidx.camera", name = "camera-view", version.ref = "cameraView" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

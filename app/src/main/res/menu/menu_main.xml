@@ -13,5 +13,10 @@
         android:icon="@drawable/ic_download"
         android:title="Downloads"
         app:showAsAction="never"/>
+    <item
+        android:id="@+id/action_face_recog"
+        android:icon="@drawable/ic_cam"
+        android:title="Mood"
+        app:showAsAction="never"/>
 
 </menu>

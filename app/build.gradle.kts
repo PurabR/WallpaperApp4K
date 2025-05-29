@@ -61,6 +61,8 @@ dependencies {
 
 
     implementation("com.google.dagger:hilt-android:2.48")
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
     kapt("com.google.dagger:hilt-android-compiler:2.48")
 
     implementation(libs.firebase.firestore)
@@ -74,6 +76,15 @@ dependencies {
     releaseImplementation("com.github.chuckerteam.chucker:library-no-op:4.0.0")
 
     implementation("com.github.bumptech.glide:glide:4.16.0")
+
+    implementation (libs.google.face.detection)
+
+    implementation (libs.play.services.mlkit.face.detection)
+
+    implementation (libs.androidx.camera.core)
+    implementation (libs.androidx.camera.camera2)
+    implementation (libs.androidx.camera.lifecycle.v131)
+    implementation (libs.androidx.camera.view.v131)
 
 
 

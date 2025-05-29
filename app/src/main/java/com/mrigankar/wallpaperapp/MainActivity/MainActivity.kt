@@ -49,6 +49,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
             if (it.itemId == R.id.action_downloads) {
                navController.navigate(R.id.action_homeFragment_to_downloadFragment)
             }
+            if (it.itemId == R.id.action_face_recog) {
+                navController.navigate(R.id.action_homeFragment_to_moodFragment)
+            }
 
 
 

@@ -15,7 +15,7 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseFragment<B : ViewBinding, VM : ViewModel> : Fragment() {
 
-    private var _binding: B? = null
+    var _binding: B? = null
     protected val binding get() = _binding!!
     private var hasInitializedRootView = false
 
