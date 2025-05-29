@@ -1,19 +1,19 @@
 package com.mrigankar.wallpaperapp.Mood
 
 import android.annotation.SuppressLint
+import android.util.Log
+import android.view.Surface.ROTATION_0
+import android.view.Surface.ROTATION_270
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
 import com.homedrop.common.base.BaseFragment
-import com.mrigankar.wallpaperapp.R
-import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewBinder
-import com.mrigankar.wallpaperapp.adapter.ImageAdapter
 import com.mrigankar.wallpaperapp.databinding.FragmentMoodBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.Executors
 
 @AndroidEntryPoint
 class MoodFragment : BaseFragment<FragmentMoodBinding, MoodViewModel>() {
@@ -24,18 +24,20 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, MoodViewModel>() {
 
     override fun getViewModelClass(): Class<MoodViewModel> = MoodViewModel::class.java
 
+    private val cameraExecutor = Executors.newSingleThreadExecutor()
+
     @SuppressLint("SetTextI18n")
     override fun setUpViews() {
         super.setUpViews()
 
-        // Setup Camera after view is created
+        // Initialize camera
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
         cameraProviderFuture.addListener({
             val cameraProvider = cameraProviderFuture.get()
             bindCameraUseCase(cameraProvider)
         }, ContextCompat.getMainExecutor(requireContext()))
 
-        // Observe mood changes from ViewModel
+        // Observe mood changes
         viewModel.moodLiveData.observe(viewLifecycleOwner) { mood ->
             binding.moodTextView.text = "Detected mood: $mood"
         }
@@ -46,23 +48,32 @@ class MoodFragment : BaseFragment<FragmentMoodBinding, MoodViewModel>() {
     }
 
     private fun bindCameraUseCase(cameraProvider: ProcessCameraProvider) {
-        val preview = Preview.Builder().build().also {
+        val preview = Preview.Builder().build().also { preview ->
+            preview.setSurfaceProvider(binding.previewView.surfaceProvider)
 
         }
 
         val imageAnalyzer = ImageAnalysis.Builder()
+            .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
             .build()
             .also {
-                it.setAnalyzer(ContextCompat.getMainExecutor(requireContext())) { imageProxy ->
+                it.setAnalyzer(cameraExecutor) { imageProxy ->
                     viewModel.analyzeImage(imageProxy)
                 }
             }
 
         val cameraSelector = CameraSelector.DEFAULT_FRONT_CAMERA
 
-        cameraProvider.unbindAll()
-        cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
+        try {
+            cameraProvider.unbindAll()
+            cameraProvider.bindToLifecycle(this, cameraSelector, preview, imageAnalyzer)
+        } catch (e: Exception) {
+            Log.e("MoodFragment", "Camera binding failed", e)
+        }
     }
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        cameraExecutor.shutdown()
+    }
 }

@@ -7,21 +7,15 @@ import androidx.camera.core.ImageProxy
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.firestore.FirebaseFirestore
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetector
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.homedrop.common.base.BaseViewModel
-import com.homedrop.common.base.BaseViewType
-import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
-import com.mrigankar.wallpaperapp.ViewBinder.categories.CategoriesViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
@@ -39,21 +33,35 @@ class MoodViewModel @Inject constructor(): BaseViewModel() {
         FaceDetection.getClient(options)
     }
 
+    private val smileResults = mutableListOf<String>()
+    private var isAnalyzing = false
+    private var analysisComplete = false  // NEW FLAG
+
     @OptIn(ExperimentalGetImage::class)
     fun analyzeImage(imageProxy: ImageProxy) {
         val mediaImage = imageProxy.image
-        if (mediaImage != null) {
+        if (mediaImage != null && !analysisComplete) {
             val inputImage = InputImage.fromMediaImage(mediaImage, imageProxy.imageInfo.rotationDegrees)
             faceDetector.process(inputImage)
                 .addOnSuccessListener { faces ->
                     for (face in faces) {
                         val smileProb = face.smilingProbability ?: -1.0f
-                        val mood = when {
-                            smileProb > 0.3 -> "Happy"
-                            else -> "Sad"
-                        }
-                        _moodLiveData.postValue(mood)
+                        val mood = if (smileProb > 0.3) "Happy" else "Sad"
+                        smileResults.add(mood)
                         break
+                    }
+
+                    if (!isAnalyzing) {
+                        isAnalyzing = true
+                        viewModelScope.launch(Dispatchers.Main) {
+                            delay(3000)  // wait for 3 seconds
+                            val finalMood = smileResults.groupingBy { it }
+                                .eachCount()
+                                .maxByOrNull { it.value }
+                                ?.key ?: "Unknown"
+                            _moodLiveData.postValue(finalMood)
+                            analysisComplete = true  // ANALYSIS DONE — LOCK FURTHER CHANGES
+                        }
                     }
                 }
                 .addOnFailureListener {
@@ -66,5 +74,4 @@ class MoodViewModel @Inject constructor(): BaseViewModel() {
             imageProxy.close()
         }
     }
-
 }
