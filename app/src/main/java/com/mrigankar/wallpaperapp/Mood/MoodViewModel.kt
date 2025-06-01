@@ -7,22 +7,39 @@ import androidx.camera.core.ImageProxy
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.mlkit.vision.common.InputImage
 import com.google.mlkit.vision.face.FaceDetection
 import com.google.mlkit.vision.face.FaceDetector
 import com.google.mlkit.vision.face.FaceDetectorOptions
 import com.homedrop.common.base.BaseViewModel
+import com.homedrop.common.base.BaseViewType
+import com.mrigankar.wallpaperapp.ViewBinder.ImageBinder.ImageViewData
+import com.mrigankar.wallpaperapp.home.HomeFragmentDirections
+
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
 
 @HiltViewModel
-class MoodViewModel @Inject constructor(): BaseViewModel() {
+class MoodViewModel @Inject constructor() : BaseViewModel() {
 
     private val _moodLiveData = MutableLiveData<String>()
     val moodLiveData: LiveData<String> get() = _moodLiveData
+
+    private val _navigateToHappyFragment = MutableLiveData<Boolean>()
+    val navigateToHappyFragment: LiveData<Boolean> get() = _navigateToHappyFragment
+
+    private val _navigateToSadFragment = MutableLiveData<Boolean>()
+    val navigateToSadFragment: LiveData<Boolean> get() = _navigateToSadFragment
 
     private val faceDetector: FaceDetector by lazy {
         val options = FaceDetectorOptions.Builder()
@@ -35,7 +52,10 @@ class MoodViewModel @Inject constructor(): BaseViewModel() {
 
     private val smileResults = mutableListOf<String>()
     private var isAnalyzing = false
-    private var analysisComplete = false  // NEW FLAG
+    private var analysisComplete = false
+
+    private val channel = Channel<List<BaseViewType>>(Channel.UNLIMITED)
+    val collector: Flow<List<BaseViewType>> = channel.receiveAsFlow()
 
     @OptIn(ExperimentalGetImage::class)
     fun analyzeImage(imageProxy: ImageProxy) {
@@ -54,13 +74,20 @@ class MoodViewModel @Inject constructor(): BaseViewModel() {
                     if (!isAnalyzing) {
                         isAnalyzing = true
                         viewModelScope.launch(Dispatchers.Main) {
-                            delay(3000)  // wait for 3 seconds
+                            delay(3000)
                             val finalMood = smileResults.groupingBy { it }
                                 .eachCount()
                                 .maxByOrNull { it.value }
                                 ?.key ?: "Unknown"
+
                             _moodLiveData.postValue(finalMood)
-                            analysisComplete = true  // ANALYSIS DONE — LOCK FURTHER CHANGES
+                            analysisComplete = true
+
+                            if (finalMood == "Happy") {
+                                _navigateToHappyFragment.postValue(true)
+                            } else {
+                                _navigateToSadFragment.postValue(true)
+                            }
                         }
                     }
                 }
@@ -73,5 +100,9 @@ class MoodViewModel @Inject constructor(): BaseViewModel() {
         } else {
             imageProxy.close()
         }
+    }
+
+    fun clearNavigationFlag() {
+        _navigateToHappyFragment.value = false
     }
 }

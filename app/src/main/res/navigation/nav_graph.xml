@@ -56,5 +56,28 @@
     <fragment
         android:id="@+id/moodFragment"
         android:name="com.mrigankar.wallpaperapp.Mood.MoodFragment"
-        android:label="MoodFragment" />
+        android:label="MoodFragment" >
+        <action
+            android:id="@+id/action_moodFragment_to_happyFragment"
+            app:destination="@id/happyFragment" />
+        <action
+            android:id="@+id/action_moodFragment_to_sadFragment"
+            app:destination="@id/sadFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/happyFragment"
+        android:name="com.mrigankar.wallpaperapp.Mood.Types.HappyFragment"
+        android:label="HappyFragment" >
+        <action
+            android:id="@+id/action_happyFragment_to_setWallpaperFragment"
+            app:destination="@id/setWallpaperFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/sadFragment"
+        android:name="com.mrigankar.wallpaperapp.Mood.Types.SadFragment"
+        android:label="SadFragment" >
+        <action
+            android:id="@+id/action_sadFragment_to_setWallpaperFragment"
+            app:destination="@id/setWallpaperFragment" />
+    </fragment>
 </navigation>

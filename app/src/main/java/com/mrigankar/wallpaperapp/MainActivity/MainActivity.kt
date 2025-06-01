@@ -12,12 +12,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
-    //MainActivity
 
-    //Splash
-    //Home
-    //category detail screen
-    //image screen
 
     private lateinit var navController: NavController
     override fun getViewBinding(): ActivityMainBinding {
